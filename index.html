@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        li{
+            list-style: none
+        }
+
+        .contents div{
+            background: url("/images/bg3_1-1.jpg") no-repeat;
+            width: 510px;
+            height: 80px;
+        }
+        .contents .choice{
+            display: flex;
+            flex-display: row;
+            justify-content: space-between;
+        }
+        .contents .choice li{
+            width: 120px;
+            height: 80px;
+            cursor: pointer;
+            opacity: 0;
+        }
+        .contents .choice li.on{
+            opacity: 1;
+        }
+        .contents .choice li:nth-child(1){
+            background: url("images/bg3_1_text.jpg") no-repeat;
+        }
+        .contents .choice li:nth-child(2){
+            background: url("images/bg3_2_text.jpg") no-repeat;
+        }
+        .contents .choice li:nth-child(3){
+            background: url("images/bg3_3_text.jpg") no-repeat;
+        }
+        .contents .choice li:nth-child(4){
+            background: url("images/bg3_4_text.jpg") no-repeat;
+        }
+
+        .contents .answer{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: top;
+        }
+        .contents .answer li{
+            width: 350px;
+            height: 370px;
+            cursor: pointer;
+            display: none;
+        }
+        .contents .answer li:nth-child(1){
+            background: url("images/bg3_1_answer.png") center top no-repeat;
+            width: 323px;
+            height: 293px;
+        }
+        .contents .answer li:nth-child(2){
+            background: url("images/bg3_2_answer.png") center top no-repeat;
+            width: 346px;
+            height: 223px;
+        }
+        .contents .answer li:nth-child(3){
+            background: url("images/bg3_3_answer.png") center top no-repeat;
+            width: 280px;
+            height: 363px;
+        }
+        .contents .answer li:nth-child(4){
+            background: url("images/bg3_4_answer.png") center top no-repeat;
+            width: 280px;
+            height: 363px;
+        }
+    </style>
+</head>
+<body>
+    <div class="contents">
+        <div>
+            <ul class="choice">
+                <li data-id="1"></li>
+                <li data-id="2"></li>
+                <li data-id="3"></li>
+                <li data-id="4"></li>
+            </ul>
+            <ul class="answer">
+                <li id="1"></li>
+                <li id="2"></li>
+                <li id="3"></li>
+                <li id="4"></li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        let choiceLis = document.querySelectorAll('.choice li');
+        let answerLis = document.querySelectorAll('.answer li');
+
+
+        for(let i=0; i<choiceLis.length; i++){
+            choiceLis[i].addEventListener('click',function (e){
+                e.preventDefault();
+                let target = e.target.dataset.id;
+                console.log(target);
+
+                for(let j=0; j<answerLis.length; j++){
+                    answerLis[j].style.display = 'none';
+                }
+
+                document.getElementById(target).style.display = 'block';
+
+                for(let v=0; v<choiceLis.length; v++){
+                    choiceLis[v].classList.remove('on');
+                    e.target.classList.add('on');
+                }
+            })
+        }
+
+
+
+        // function choiceCloseAll(item){
+        //     choiceLis.forEach((choiceLi)=>{
+        //         // console.log(item)
+        //         if(choiceLi !== item){
+        //             choiceLi.classList.remove('on');
+        //         }
+        //     })
+        // }
+        //
+        // choiceLis.forEach((item)=>{
+        //     item.addEventListener('click',()=>{
+        //         choiceCloseAll(item);
+        //         item.classList.toggle('on');
+        //
+        //     })
+        // })
+
+
+    </script>
+</body>
+</html>
